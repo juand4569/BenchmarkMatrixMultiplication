@@ -1,3 +1,5 @@
+package ulpgc.bd;
+
 import java.util.Random;
 
 public class Matrix {
