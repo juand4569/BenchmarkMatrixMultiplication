@@ -1,20 +1,27 @@
-import random
+from random import Random
 
-class BasicMatrixMultiplier:
-    def __init__(self):
-        self.random = random.Random()
 
-    def generate_matrices(self, n):
-        A = [[self.random.random() for _ in range(n)] for _ in range(n)]
-        B = [[self.random.random() for _ in range(n)] for _ in range(n)]
-        return A, B
+class MatrixMultiplier:
+    def __init__(self, size, random_seed=None):
+        self.size = size
+        self.data = []
+        self._rng = Random(random_seed)
 
-    def multiply(self, first_matrix, second_matrix):
-        size = len(first_matrix)
-        result_matrix = [[0.0 for _ in range(size)] for _ in range(size)]
+    def fill_random(self):
+        self.data = [[self._rng.random() for _ in range(self.size)]
+                     for _ in range(self.size)]
+        return self
 
-        for i in range(size):
-            for j in range(size):
-                for k in range(size):
-                    result_matrix[i][j] += first_matrix[i][k] * second_matrix[k][j]
-        return result_matrix
+    def multiply_with(self, other):
+        if self.size != other.size:
+            raise ValueError("Matrix dimensions must match")
+
+        result = MatrixMultiplier(self.size)
+        result.data = [[0.0] * self.size for _ in range(self.size)]
+
+        for i in range(self.size):
+            for j in range(self.size):
+                for k in range(self.size):
+                    result.data[i][j] += self.data[i][k] * other.data[k][j]
+
+        return result
