@@ -18,7 +18,7 @@ public class MatrixMultiplicationBenchmarking {
 
     @State(Scope.Benchmark)
     public static class Data {
-        @Param({"128","256","512","1024","2048"}) int n;
+        @Param({"128","256","512","1024"}) int n;
 
         SystemInfo si;
         long pid;
