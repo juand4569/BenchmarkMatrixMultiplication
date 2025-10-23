@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 results_dir = Path("results")
-df_java = pd.read_csv(results_dir / "benchmark.csv")
+df_java = pd.read_csv(results_dir / "benchmark_java.csv")
 df_c = pd.read_csv(results_dir / "benchmark_c.csv")
-df_python = pd.read_csv(results_dir / "matrix_benchmark.csv")
+df_python = pd.read_csv(results_dir / "benchmark_py.csv")
 
 df = pd.concat([df_c, df_python, df_java], ignore_index=True)
 

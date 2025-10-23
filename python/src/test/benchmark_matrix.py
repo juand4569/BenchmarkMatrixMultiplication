@@ -29,7 +29,7 @@ def execute_single_benchmark(matrix_size):
 def run_benchmark_suite(sizes, repetitions=5):
     output_dir = Path(output_folder)
     output_dir.mkdir(exist_ok=True)
-    csv_path = output_dir / "matrix_benchmark.csv"
+    csv_path = output_dir / "benchmark_py.csv"
 
     all_results = {size: [] for size in sizes}
 
