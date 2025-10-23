@@ -143,6 +143,7 @@ int main(int argc, char* argv[]) {
     #ifdef _WIN32
     snprintf(csv_filename, sizeof(csv_filename), "%s\\benchmark_c.csv", argv[1]);
     #else
+    
     snprintf(csv_filename, sizeof(csv_filename), "%s/benchmark_c.csv", argv[1]);
     #endif
 

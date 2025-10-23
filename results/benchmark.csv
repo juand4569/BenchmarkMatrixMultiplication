@@ -1,0 +1,5 @@
+Language,Matrix_Size,Time_ms,Memory_MB
+Java,128,1.617,187.44
+Java,256,18.567,195.11
+Java,512,178.148,219.19
+Java,1024,4143.322,251.36
