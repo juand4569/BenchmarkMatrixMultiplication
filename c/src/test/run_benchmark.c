@@ -147,7 +147,7 @@ int main(int argc, char* argv[]) {
     snprintf(csv_filename, sizeof(csv_filename), "%s/benchmark_c.csv", argv[1]);
     #endif
 
-    int test_sizes[] = {64, 128, 256, 512, 1024};
+    int test_sizes[] = {128, 256, 512, 1024};
     int num_sizes = sizeof(test_sizes) / sizeof(test_sizes[0]);
     int iterations_per_size = 5;
     int total_benchmarks = num_sizes * iterations_per_size;
