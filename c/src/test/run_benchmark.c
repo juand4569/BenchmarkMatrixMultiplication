@@ -79,14 +79,13 @@ void perform_benchmark_iteration(int matrix_size, int iteration, BenchmarkRecord
 }
 
 void write_csv_header(FILE* file) {
-    fprintf(file, "MatrixSize,Run,TimeSeconds,RealMemoryMB\n");
+    fprintf(file, "Language,Matrix_Size,Time_ms,Memory_MB\n");
 }
 
 void write_benchmark_record(FILE* file, BenchmarkRecord* record) {
-    fprintf(file, "%d,%d,%.5f,%.5f\n",
+    fprintf(file, "C,%d,%.3f,%.2f\n",
             record->size,
-            record->run_number,
-            record->time_seconds,
+            record->time_seconds * 1000.0,
             record->memory_mb);
 }
 
