@@ -69,5 +69,5 @@ def display_statistics(results):
 
 if __name__ == "__main__":
     matrix_sizes = [128, 256, 512, 1024]
-    output_folder = sys.argv[1]
+    output_folder = sys.argv[1] if len(sys.argv) > 1 else "results"
     run_benchmark_suite(matrix_sizes, repetitions=5)

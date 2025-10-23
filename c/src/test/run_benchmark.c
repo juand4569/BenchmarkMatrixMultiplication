@@ -82,11 +82,27 @@ void write_csv_header(FILE* file) {
     fprintf(file, "Language,Matrix_Size,Time_ms,Memory_MB\n");
 }
 
-void write_benchmark_record(FILE* file, BenchmarkRecord* record) {
-    fprintf(file, "C,%d,%.3f,%.2f\n",
-            record->size,
-            record->time_seconds * 1000.0,
-            record->memory_mb);
+void write_average_results_to_csv(FILE* file, BenchmarkRecord* records,
+                                   int total_records, int* sizes, int num_sizes) {
+    for (int s = 0; s < num_sizes; s++) {
+        int current_size = sizes[s];
+        double total_time = 0.0;
+        double total_mem = 0.0;
+        int count = 0;
+
+        for (int i = 0; i < total_records; i++) {
+            if (records[i].size == current_size) {
+                total_time += records[i].time_seconds;
+                total_mem += records[i].memory_mb;
+                count++;
+            }
+        }
+
+        double avg_time_ms = (total_time / count) * 1000.0;
+        double avg_mem = total_mem / count;
+
+        fprintf(file, "C,%d,%.3f,%.2f\n", current_size, avg_time_ms, avg_mem);
+    }
 }
 
 void compute_and_display_averages(BenchmarkRecord* records, int total_records,
@@ -157,12 +173,14 @@ int main(int argc, char* argv[]) {
             perform_benchmark_iteration(size, iter, &current_record);
 
             all_records[record_index++] = current_record;
-            write_benchmark_record(output_file, &current_record);
 
             printf("Size %d | Iteration %d | Time: %.5fs\n",
                    size, iter, current_record.time_seconds);
         }
     }
+
+    write_average_results_to_csv(output_file, all_records, total_benchmarks,
+                                 test_sizes, num_sizes);
 
     fclose(output_file);
 
@@ -170,7 +188,6 @@ int main(int argc, char* argv[]) {
                                 test_sizes, num_sizes, iterations_per_size);
 
     printf("\nBenchmark completed. Results saved at: %s\n", csv_filename);
-
     free(all_records);
     return 0;
 }
