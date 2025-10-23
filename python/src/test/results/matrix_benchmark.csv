@@ -1,0 +1,5 @@
+Language,Matrix_Size,Time_ms,Memory_MB
+Python,128,165.952,88.82
+Python,256,1354.479,93.72
+Python,512,12426.359,116.49
+Python,1024,260247.125,208.77
