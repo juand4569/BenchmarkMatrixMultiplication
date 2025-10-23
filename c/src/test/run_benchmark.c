@@ -141,9 +141,9 @@ int main(int argc, char* argv[]) {
 
     char csv_filename[512];
     #ifdef _WIN32
-    snprintf(csv_filename, sizeof(csv_filename), "%s\\summary_c.csv", argv[1]);
+    snprintf(csv_filename, sizeof(csv_filename), "%s\\benchmark_c.csv", argv[1]);
     #else
-    snprintf(csv_filename, sizeof(csv_filename), "%s/summary_c.csv", argv[1]);
+    snprintf(csv_filename, sizeof(csv_filename), "%s/benchmark_c.csv", argv[1]);
     #endif
 
     int test_sizes[] = {64, 128, 256, 512, 1024};
