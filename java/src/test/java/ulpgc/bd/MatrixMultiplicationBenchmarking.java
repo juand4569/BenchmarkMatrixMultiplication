@@ -18,7 +18,7 @@ public class MatrixMultiplicationBenchmarking {
 
     @State(Scope.Benchmark)
     public static class Data {
-        @Param({"128","256","512","1024","2048"}) int n;  // ← AÑADIDO 2048
+        @Param({"128","256","512","1024","2048"}) int n;
 
         SystemInfo si;
         long pid;
@@ -78,7 +78,7 @@ public class MatrixMultiplicationBenchmarking {
             running = false;
             if (sampler != null) try { sampler.join(300); } catch (InterruptedException ignored) {}
             double peakMB = peak.get() / 1_048_576.0;
-            System.out.printf("Matrix size: %dx%d | Peak memory: %.2f MB%n", n, n, peakMB);  // ← MOSTRAR TAMAÑO
+            System.out.printf("Matrix size: %dx%d | Peak memory: %.2f MB%n", n, n, peakMB);
         }
     }
 
